@@ -3,63 +3,331 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BirdRune</title>
+  <title>アプリ倉庫 birdrune</title>
+  <meta name="description" content="スマートフォン向けのアプリ・ゲームを開発しています。/ We develop mobile apps and games.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light dark; }
+    :root {
+      --border-gray: #e6e6e6;
+      --heading: #00102e;
+      --text: #233452;
+      --mewdoku: #43cce6;
+      --mewdoku-hover: #8ee2f1;
+      --passcat: #0377f6;
+      --passcat-btn: #4664ff;
+      --passcat-hover: #96baff;
+    }
     body {
-      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-      max-width: 720px;
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      max-width: 760px;
       margin: 0 auto;
       padding: 2rem 1.25rem 4rem;
-      line-height: 1.8;
+      line-height: 1.9;
+      color: var(--text);
+      background: #fff;
     }
-    h1 { font-size: 1.8rem; }
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--heading);
+      text-align: center;
+      margin: 1.5rem 0 .5rem;
+    }
+    h1 img {
+      width: 80%;
+      max-width: 440px;
+      height: auto;
+      vertical-align: middle;
+    }
+    .lead { text-align: center; margin: 0 0 2rem; }
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-gray);
+      font-size: .85rem;
+      color: #6c6c6c;
+      text-align: center;
+    }
+    a { color: var(--passcat); }
     .app {
-      border: 1px solid #8884;
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      margin: 1.5rem 0;
+      position: relative;
+      display: flex;
+      border: 1px solid var(--border-gray);
+      border-radius: 14px;
+      margin: 2rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
     }
-    .app h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
-    .app p { margin: .25rem 0; }
-    footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
-    a { color: #2a7ae2; }
+    .app-side {
+      flex: 0 0 20%;
+      min-width: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem .5rem;
+      border-radius: 14px 0 0 14px;
+    }
+    .app.mewdoku .app-side { background: var(--mewdoku); }
+    .app.passcat .app-side { background: var(--passcat); }
+    .app-side a { display: contents; }
+    .app-side img {
+      width: 135%;
+      max-width: 160px;
+      margin-left: -18%;
+      border-radius: 22%;
+      transform: rotate(-8deg);
+      box-shadow: 5px 7px 14px rgba(0, 0, 0, .4);
+    }
+    .app-body { padding: 1rem 1.25rem 1.25rem; flex: 1; }
+    .app-body h2 {
+      margin: 0 0 .25rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--heading);
+    }
+    .app-body p { margin: .25rem 0; font-size: .875rem; }
+    .app-body h2 + p { margin: 20px 0; }
+    .app-body h2 img {
+      height: 2.2em;
+      width: auto;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+    .app.passcat .app-body h2 img { height: 2.65em; }
+    .app-body .store-buttons { font-size: .8rem; gap: .4rem; flex-wrap: nowrap; }
+    .app-body .store-buttons .btn { padding: .25rem .8rem; white-space: nowrap; }
+    @media (max-width: 600px) {
+      .app-body .store-buttons { flex-wrap: wrap; }
+    }
+    .app.mewdoku a { color: #1ba8c4; }
+    .app.passcat a { color: var(--passcat); }
+    .app-links {
+      position: absolute;
+      top: .9rem;
+      right: 1.1rem;
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      margin: 0;
+    }
+    .app-links a {
+      display: inline-block;
+      padding: .1rem 1.1rem;
+      border: 2px solid currentColor;
+      border-radius: 25px;
+      font-size: .85rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .3s, color .3s;
+    }
+    @media (max-width: 600px) {
+      .app-links {
+        position: static;
+        justify-content: flex-start;
+        margin: .75rem 0 0;
+      }
+    }
+    .app.mewdoku .app-links a:hover,
+    .app.mewdoku .app-links a:focus { background: #1ba8c4; border-color: #1ba8c4; color: #fff; }
+    .app.passcat .app-links a:hover,
+    .app.passcat .app-links a:focus { background: var(--passcat); border-color: var(--passcat); color: #fff; }
+    .store-buttons {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      margin: .9rem 0 0;
+    }
+    .store-buttons .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: #fff;
+      font-weight: 700;
+      padding: .4rem 1.4rem;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background .3s;
+    }
+    .app.mewdoku .store-buttons .btn { background: var(--mewdoku); }
+    .app.mewdoku .store-buttons .btn:hover,
+    .app.mewdoku .store-buttons .btn:focus { background: var(--mewdoku-hover); }
+    .app.passcat .store-buttons .btn { background: var(--passcat-btn); }
+    .app.passcat .store-buttons .btn:hover,
+    .app.passcat .store-buttons .btn:focus { background: var(--passcat-hover); }
+    .store-buttons .btn svg {
+      width: 1.1em;
+      height: 1.1em;
+      fill: currentColor;
+    }
+    .app .store-buttons .btn { color: #fff; }
+    .lang-switch { text-align: right; margin-bottom: 1rem; font-size: .9rem; }
+    .lang-switch button {
+      background: none;
+      border: 1px solid var(--border-gray);
+      border-radius: 25px;
+      padding: 0 .75rem;
+      cursor: pointer;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 700;
+      min-width: 6.5em;
+      height: 2.2em;
+      line-height: 1;
+      text-align: center;
+      transition: background .3s;
+    }
+    .lang-switch button.active {
+      background: var(--heading);
+      border-color: var(--heading);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
-  <h1>BirdRune</h1>
-  <p>スマートフォン向けのアプリ・ゲームを開発しています。<br>
-     We develop mobile apps and games.</p>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="icon-apple" viewBox="0 0 24 24">
+      <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+    </symbol>
+    <symbol id="icon-googleplay" viewBox="0 0 24 24">
+      <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/>
+    </symbol>
+    <symbol id="icon-windows" viewBox="0 0 24 24">
+      <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+    </symbol>
+  </svg>
 
-  <div class="app">
-    <h2>Mewdoku - みぅどく</h2>
-    <p>猫と一緒に遊ぶナンバープレース（ナンプレ）パズル。</p>
-    <p>A sudoku puzzle game with cats.</p>
-    <p>
-      <a href="mewdoku/">紹介ページ / About</a> ・
-      <a href="mewdoku/privacy.html">プライバシーポリシー / Privacy Policy</a>
-    </p>
-    <p><em>公開中 / Now available:</em>
-      <a href="https://apps.apple.com/jp/app/id6804964831">App Store</a> ・
-      <a href="https://play.google.com/store/apps/details?id=com.birdrune.mewdoku">Google Play</a></p>
+  <div class="lang-switch">
+    <button id="btn-ja" type="button" onclick="setLang('ja')">日本語</button>
+    <button id="btn-en" type="button" onclick="setLang('en')">English</button>
   </div>
 
-  <div class="app">
-    <h2>PassCat - ぱすねこ</h2>
-    <p>パスワードを端末内に暗号化保存し、ワンタップでコピーできるパスワード管理アプリ。</p>
-    <p>A password manager that keeps your passwords encrypted on your device, ready to copy with one tap.</p>
-    <p>
-      <a href="passcat/">紹介ページ / About</a> ・
-      <a href="passcat/privacy.html">プライバシーポリシー / Privacy Policy</a>
-    </p>
-    <p><em>Windows / Android / iOS 版公開中 / Now available:</em>
-      <a href="https://apps.apple.com/jp/app/%E3%83%91%E3%82%B9%E3%81%AD%E3%81%93/id6444306392">App Store</a> ・
-      <a href="https://play.google.com/store/apps/details?id=com.cforever.mipass">Google Play</a></p>
+  <div id="lang-ja">
+
+  <h1><img src="images/top-title.png" alt="アプリ倉庫 birdrune"></h1>
+  <p class="lead">スマートフォン向けのアプリ・ゲームを開発しています。</p>
+
+  <div class="app mewdoku">
+    <div class="app-side">
+      <a href="mewdoku/"><img src="images/mewdoku-icon.png" alt="Mewdoku アイコン"></a>
+    </div>
+    <div class="app-body">
+      <h2><a href="mewdoku/"><img src="images/mewdoku-title.png" alt="Mewdoku - みぅどく"></a></h2>
+      <p>かわいい猫と一緒に楽しむナンプレ（ナンバープレース）パズル。<br>
+         最後の 1 マスが「カチッ」とハマる瞬間の気持ちよさを、とことん味わえます。<br>
+         やさしい問題から超難問まで 10,000 問以上、すべて「解が 1 つだけ」を検証済み。<br>
+         連続クリアで次の難易度が解禁。クリアで貯めたポイントは、ごほうびイラストと交換。<br>
+         登録不要・完全オフライン。開いて 3 秒でパズル開始！</p>
+      <p class="app-links">
+        <a href="mewdoku/">紹介ページ</a>
+        <a href="mewdoku/privacy.html">プライバシーポリシー</a>
+      </p>
+      <p class="store-buttons">
+        <a class="btn" href="https://apps.apple.com/jp/app/id6804964831"><svg aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.birdrune.mewdoku"><svg aria-hidden="true"><use href="#icon-googleplay"/></svg>Google Play</a></p>
+    </div>
+  </div>
+
+  <div class="app passcat">
+    <div class="app-side">
+      <a href="passcat/"><img src="images/passcat-icon.png" alt="PassCat アイコン"></a>
+    </div>
+    <div class="app-body">
+      <h2><a href="passcat/"><img src="images/passcat-title.png" alt="PassCat - ぱすねこ"></a></h2>
+      <p>増え続けるパスワードの管理、もう限界……そんなお悩みをネコの手で解決。<br>
+         パスワードは端末の中に暗号化して保存し、必要なときにワンタップでコピー。<br>
+         当方がデータをお預かりするサーバーはなく、保存先はあなたの端末とあなた自身のクラウドだけ。<br>
+         Google Drive / Dropbox / Box / WebDAV と同期して、複数の端末で同じデータを使えます。<br>
+         パスワード自動生成・強度チェックつきで、弱いパスワードの見直しにも。</p>
+      <p class="app-links">
+        <a href="passcat/">紹介ページ</a>
+        <a href="passcat/privacy.html">プライバシーポリシー</a>
+      </p>
+      <p class="store-buttons">
+        <a class="btn" href="https://apps.apple.com/jp/app/%E3%83%91%E3%82%B9%E3%81%AD%E3%81%93/id6444306392"><svg aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.cforever.mipass"><svg aria-hidden="true"><use href="#icon-googleplay"/></svg>Google Play</a>
+        <a class="btn" href="download/PassCatSetup.exe" download><svg aria-hidden="true"><use href="#icon-windows"/></svg>Windows (exe)</a>
+        <a class="btn" href="download/PassCatSetup.zip" download><svg aria-hidden="true"><use href="#icon-windows"/></svg>Windows (zip)</a></p>
+    </div>
+  </div>
+
+  </div>
+
+  <div id="lang-en">
+
+  <h1><img src="images/top-title.png" alt="birdrune App Warehouse"></h1>
+  <p class="lead">We develop mobile apps and games.</p>
+
+  <div class="app mewdoku">
+    <div class="app-side">
+      <a href="mewdoku/"><img src="images/mewdoku-icon.png" alt="Mewdoku icon"></a>
+    </div>
+    <div class="app-body">
+      <h2><a href="mewdoku/"><img src="images/mewdoku-title.png" alt="Mewdoku - Cat Sudoku"></a></h2>
+      <p>That rush when the last number clicks into place — enjoy it with adorable cats.<br>
+         Over 10,000 puzzles from easy to expert, each verified to have exactly one solution.<br>
+         Win a few in a row to unlock higher difficulties, and collect cute reward artwork.<br>
+         A fresh daily puzzle keeps your brain sharp every day.<br>
+         Free to start, fully offline, no sign-up — you're solving in seconds.</p>
+      <p class="app-links">
+        <a href="mewdoku/">About</a>
+        <a href="mewdoku/privacy.html">Privacy Policy</a>
+      </p>
+      <p class="store-buttons">
+        <a class="btn" href="https://apps.apple.com/us/app/id6804964831"><svg aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.birdrune.mewdoku&amp;hl=en"><svg aria-hidden="true"><use href="#icon-googleplay"/></svg>Google Play</a></p>
+    </div>
+  </div>
+
+  <div class="app passcat">
+    <div class="app-side">
+      <a href="passcat/"><img src="images/passcat-icon.png" alt="PassCat icon"></a>
+    </div>
+    <div class="app-body">
+      <h2><a href="passcat/"><img src="images/passcat-title.png" alt="PassCat"></a></h2>
+      <p>Too many passwords to remember? Let a cat lend you a paw.<br>
+         Your passwords are stored encrypted on your device, ready to copy with a single tap.<br>
+         We run no servers — your data lives only on your device and in your own cloud.<br>
+         Sync via Google Drive, Dropbox, Box or WebDAV to use the same data on every device.<br>
+         A built-in password generator and strength meter help you retire weak, reused passwords.</p>
+      <p class="app-links">
+        <a href="passcat/">About</a>
+        <a href="passcat/privacy.html">Privacy Policy</a>
+      </p>
+      <p class="store-buttons">
+        <a class="btn" href="https://apps.apple.com/us/app/passcat/id6444306392"><svg aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.cforever.mipass&amp;hl=en"><svg aria-hidden="true"><use href="#icon-googleplay"/></svg>Google Play</a>
+        <a class="btn" href="download/PassCatSetup.exe" download><svg aria-hidden="true"><use href="#icon-windows"/></svg>Windows (exe)</a>
+        <a class="btn" href="download/PassCatSetup.zip" download><svg aria-hidden="true"><use href="#icon-windows"/></svg>Windows (zip)</a></p>
+    </div>
+  </div>
+
   </div>
 
   <footer>
-    お問い合わせ / Contact: <a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a><br>
-    © BirdRune
+    <span class="only-ja">お問い合わせ: </span><span class="only-en">Contact: </span><a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a><br>
+    © birdrune
   </footer>
+
+  <script>
+    function setLang(lang) {
+      document.getElementById('lang-ja').hidden = (lang !== 'ja');
+      document.getElementById('lang-en').hidden = (lang !== 'en');
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.querySelectorAll('.only-ja').forEach(function (el) { el.hidden = (lang !== 'ja'); });
+      document.querySelectorAll('.only-en').forEach(function (el) { el.hidden = (lang !== 'en'); });
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('birdrune-lang', lang); } catch (e) { /* プライベートモード等では保存しない */ }
+    }
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('birdrune-lang'); } catch (e) {}
+      var lang = saved || ((navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en');
+      setLang(lang);
+    })();
+  </script>
 </body>
 </html>

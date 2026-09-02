@@ -4,23 +4,100 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>プライバシーポリシー / Privacy Policy - PassCat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light dark; }
+    :root {
+      --blue: #0377f6;
+      --bg-soft: #f8fbff;
+      --border-soft: #c7ecfd;
+      --border-gray: #e6e6e6;
+      --heading: #00102e;
+      --text: #233452;
+    }
     body {
-      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-      max-width: 720px;
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      max-width: 760px;
       margin: 0 auto;
       padding: 2rem 1.25rem 4rem;
-      line-height: 1.8;
+      line-height: 1.9;
+      color: var(--text);
+      background: #fff;
     }
-    h1 { font-size: 1.6rem; }
-    h2 { font-size: 1.2rem; margin-top: 2rem; border-bottom: 1px solid #8884; padding-bottom: .25rem; }
-    footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
-    a { color: #2a7ae2; }
-    hr.lang { margin: 3rem 0; border: none; border-top: 2px solid #8886; }
+    h1 {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--heading);
+      text-align: center;
+      margin: 1.5rem 0 1rem;
+    }
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 10px;
+      padding: .45rem 1.1rem;
+      margin-top: 2.25rem;
+    }
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-gray);
+      font-size: .85rem;
+      color: #6c6c6c;
+      text-align: center;
+    }
+    a { color: var(--blue); }
+    .lang-switch { text-align: right; margin-bottom: 1rem; font-size: .9rem; }
+    .lang-switch button {
+      background: none;
+      border: 1px solid var(--border-gray);
+      border-radius: 25px;
+      padding: 0 .75rem;
+      cursor: pointer;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 700;
+      min-width: 6.5em;
+      height: 2.2em;
+      line-height: 1;
+      text-align: center;
+      transition: background .3s;
+    }
+    .lang-switch button.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .site-header .lang-switch { margin-bottom: 0; }
+    .site-logo img {
+      height: 5.2em;
+      width: auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
+  <div class="site-header">
+    <a class="site-logo" href="../"><img src="../images/top-title.png" alt="アプリ倉庫 birdrune"></a>
+    <div class="lang-switch">
+      <button id="btn-ja" type="button" onclick="setLang('ja')">日本語</button>
+      <button id="btn-en" type="button" onclick="setLang('en')">English</button>
+    </div>
+  </div>
+
+  <div id="lang-ja">
+
   <h1>PassCat プライバシーポリシー</h1>
 
   <p>BirdRune（以下「当方」）は、パスワード管理アプリ「PassCat」（以下「本アプリ」）に
@@ -97,7 +174,9 @@
 
   <p>制定日: 2026/09/02</p>
 
-  <hr class="lang">
+  </div>
+
+  <div id="lang-en">
 
   <h1>PassCat Privacy Policy</h1>
 
@@ -174,8 +253,27 @@
 
   <p>Effective date: September 2, 2026</p>
 
+  </div>
+
   <footer>
-    © BirdRune — <a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a> — <a href="../">Top</a>
+    © birdrune — <a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a> — <a href="../">Top</a>
   </footer>
+
+  <script>
+    function setLang(lang) {
+      document.getElementById('lang-ja').hidden = (lang !== 'ja');
+      document.getElementById('lang-en').hidden = (lang !== 'en');
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('birdrune-lang', lang); } catch (e) { /* プライベートモード等では保存しない */ }
+    }
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('birdrune-lang'); } catch (e) {}
+      var lang = saved || ((navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en');
+      setLang(lang);
+    })();
+  </script>
 </body>
 </html>

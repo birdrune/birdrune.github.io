@@ -5,53 +5,160 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PassCat - BirdRune</title>
   <meta name="description" content="PassCat は、パスワードを端末内に暗号化して保存し、必要なときにワンタップでコピーできるパスワード管理アプリです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light dark; }
+    :root {
+      --blue: #0377f6;
+      --btn: #4664ff;
+      --btn-hover: #96baff;
+      --bg-soft: #f8fbff;
+      --border-soft: #c7ecfd;
+      --border-gray: #e6e6e6;
+      --heading: #00102e;
+      --text: #233452;
+    }
     body {
-      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-      max-width: 720px;
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      max-width: 760px;
       margin: 0 auto;
       padding: 2rem 1.25rem 4rem;
-      line-height: 1.8;
+      line-height: 1.9;
+      color: var(--text);
+      background: #fff;
     }
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.25rem; margin-top: 2.5rem; border-bottom: 1px solid #8884; padding-bottom: .25rem; }
-    h3 { font-size: 1.05rem; margin-top: 1.75rem; }
-    footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
-    a { color: #2a7ae2; }
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--heading);
+      text-align: center;
+      margin: 1.5rem 0 50px;
+    }
+    h1 img {
+      height: 3.4em;
+      width: auto;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 10px;
+      padding: .45rem 1.1rem;
+      margin-top: 2.75rem;
+    }
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-top: 1.75rem;
+    }
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-gray);
+      font-size: .85rem;
+      color: #6c6c6c;
+      text-align: center;
+    }
+    a { color: var(--blue); }
     ol.steps > li { margin: .75rem 0; }
+    .store-buttons {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1.25rem 0 1.75rem;
+    }
+    .store-buttons .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--btn);
+      color: #fff;
+      font-weight: 700;
+      padding: .5rem 1.75rem;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background .3s;
+    }
+    .store-buttons .btn svg {
+      width: 1.1em;
+      height: 1.1em;
+      fill: currentColor;
+    }
+    .store-buttons .btn:hover,
+    .store-buttons .btn:focus { background: var(--btn-hover); }
+    .platforms { text-align: center; margin-bottom: .25rem; }
     .note {
-      border: 1px solid #8884;
-      border-left: 4px solid #e2a52a;
-      border-radius: 6px;
-      padding: .75rem 1rem;
+      border: 1px solid var(--border-soft);
+      border-left: 5px solid var(--blue);
+      border-radius: 12px;
+      background: var(--bg-soft);
+      padding: .75rem 1.1rem;
       margin: 1rem 0;
       font-size: .95rem;
     }
-    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
-    th, td { border: 1px solid #8884; padding: .4rem .6rem; text-align: left; vertical-align: top; }
+    .note strong { color: var(--blue); }
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 100%;
+      margin: 1rem 0;
+      font-size: .95rem;
+    }
+    th, td { padding: .5rem .8rem; text-align: left; vertical-align: top; }
+    th {
+      background: var(--blue);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+    }
+    th:first-child { border-top-left-radius: 11px; }
+    th:last-child { border-top-right-radius: 11px; }
+    td { border-bottom: 1px solid var(--border-gray); }
+    tr:nth-child(odd) td { background: var(--bg-soft); }
     .lang-switch { text-align: right; margin-bottom: 1rem; font-size: .9rem; }
     .lang-switch button {
       background: none;
-      border: 1px solid #8884;
-      border-radius: 6px;
+      border: 1px solid var(--border-gray);
+      border-radius: 25px;
       padding: 0 .75rem;
       cursor: pointer;
       color: inherit;
+      font-family: inherit;
       font-size: inherit;
+      font-weight: 700;
       min-width: 6.5em;
       height: 2.2em;
       line-height: 1;
       text-align: center;
+      transition: background .3s;
     }
     .lang-switch button.active {
-      background: #2a7ae2;
-      border-color: #2a7ae2;
+      background: var(--blue);
+      border-color: var(--blue);
       color: #fff;
+    }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .site-header .lang-switch { margin-bottom: 0; }
+    .site-logo img {
+      height: 5.2em;
+      width: auto;
+      display: block;
     }
     .screenshots {
       display: flex;
-      gap: .6rem;
+      gap: 20px;
       overflow-x: auto;
       margin: 1rem 0;
       padding-bottom: .5rem;
@@ -59,28 +166,92 @@
     .screenshots img {
       width: 150px;
       flex-shrink: 0;
-      border: 1px solid #8884;
-      border-radius: 8px;
+      border: 1px solid var(--border-gray);
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
     }
+    ol.steps .screenshots { justify-content: center; }
+    .carousel { position: relative; }
+    .carousel .screenshots {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .carousel .screenshots::-webkit-scrollbar { display: none; }
+    .carousel .screenshots img { width: calc((100% - 60px) / 4); }
+    @media (max-width: 600px) {
+      .carousel .screenshots img { width: calc((100% - 20px) / 2); }
+    }
+    .carousel-prev, .carousel-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      width: 2.2em;
+      height: 2.2em;
+      border: none;
+      border-radius: 50%;
+      background: rgba(3, 119, 246, .6);
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .carousel-prev:hover, .carousel-next:hover { background: var(--blue); }
+    .carousel-prev { left: .3rem; }
+    .carousel-next { right: .3rem; }
+    .carousel-dots { text-align: center; margin-top: .25rem; }
+    .carousel-dots button {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      margin: 0 5px;
+      border: none;
+      border-radius: 50%;
+      background: #d0d0d0;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .carousel-dots button.active { background: #333; }
   </style>
 </head>
 <body>
-  <div class="lang-switch">
-    <button id="btn-ja" type="button" onclick="setLang('ja')">日本語</button>
-    <button id="btn-en" type="button" onclick="setLang('en')">English</button>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="icon-apple" viewBox="0 0 24 24">
+      <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+    </symbol>
+    <symbol id="icon-googleplay" viewBox="0 0 24 24">
+      <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/>
+    </symbol>
+    <symbol id="icon-windows" viewBox="0 0 24 24">
+      <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+    </symbol>
+  </svg>
+
+  <div class="site-header">
+    <a class="site-logo" href="../"><img src="../images/top-title.png" alt="アプリ倉庫 birdrune"></a>
+    <div class="lang-switch">
+      <button id="btn-ja" type="button" onclick="setLang('ja')">日本語</button>
+      <button id="btn-en" type="button" onclick="setLang('en')">English</button>
+    </div>
   </div>
 
   <div id="lang-ja">
 
-  <h1>PassCat - ぱすねこ</h1>
+  <h1><img src="../images/passcat-title.png" alt="PassCat - ぱすねこ"></h1>
 
-  <div class="screenshots">
-    <img src="images/title.png" alt="タイトル画面" loading="lazy">
-    <img src="images/list.png" alt="パスワード一覧画面" loading="lazy">
-    <img src="images/input.png" alt="パスワード入力画面" loading="lazy">
-    <img src="images/cloud-provider.png" alt="クラウド同期先の選択画面" loading="lazy">
-    <img src="images/webdav.png" alt="WebDAV 設定画面" loading="lazy">
-    <img src="images/xlsx.png" alt="XLSX インポート / エクスポート画面" loading="lazy">
+  <div class="carousel">
+    <button class="carousel-prev" type="button" aria-label="前へ">&#10094;</button>
+    <div class="screenshots">
+      <img src="images/title.png" alt="タイトル画面" loading="lazy">
+      <img src="images/list.png" alt="パスワード一覧画面" loading="lazy">
+      <img src="images/input.png" alt="パスワード入力画面" loading="lazy">
+      <img src="images/cloud-provider.png" alt="クラウド同期先の選択画面" loading="lazy">
+      <img src="images/webdav.png" alt="WebDAV 設定画面" loading="lazy">
+      <img src="images/xlsx.png" alt="XLSX インポート / エクスポート画面" loading="lazy">
+    </div>
+    <button class="carousel-next" type="button" aria-label="次へ">&#10095;</button>
+    <div class="carousel-dots"></div>
   </div>
 
   <p>PassCat は、パスワードを<strong>端末の中に暗号化して保存</strong>し、
@@ -91,9 +262,12 @@
   <p>当方がパスワードをお預かりするサーバーはありません。
      データはあなたの端末と、あなたが選んだあなた自身のクラウドにだけ保存されます。</p>
 
-  <p><em>Windows / Android / iOS 版公開中:</em>
-     <a href="https://apps.apple.com/jp/app/%E3%83%91%E3%82%B9%E3%81%AD%E3%81%93/id6444306392">App Store</a> ・
-     <a href="https://play.google.com/store/apps/details?id=com.cforever.mipass">Google Play</a></p>
+  <p class="platforms"><em>Windows / Android / iOS 版公開中</em></p>
+  <p class="store-buttons">
+     <a class="btn" href="https://apps.apple.com/jp/app/%E3%83%91%E3%82%B9%E3%81%AD%E3%81%93/id6444306392"><svg aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+     <a class="btn" href="https://play.google.com/store/apps/details?id=com.cforever.mipass"><svg aria-hidden="true"><use href="#icon-googleplay"/></svg>Google Play</a>
+     <a class="btn" href="../download/PassCatSetup.exe" download><svg aria-hidden="true"><use href="#icon-windows"/></svg>Windows (exe)</a>
+     <a class="btn" href="../download/PassCatSetup.zip" download><svg aria-hidden="true"><use href="#icon-windows"/></svg>Windows (zip)</a></p>
 
   <h2>PassCat を正しく使う手順</h2>
 
@@ -221,23 +395,27 @@
   </ul>
 
   <p>
-    <a href="privacy.html">プライバシーポリシー</a><br>
-    <a href="../">BirdRune トップへ</a>
+    <a href="privacy.html">プライバシーポリシー</a>
   </p>
 
   </div>
 
   <div id="lang-en">
 
-  <h1>PassCat</h1>
+  <h1><img src="../images/passcat-title.png" alt="PassCat"></h1>
 
-  <div class="screenshots">
-    <img src="images/title.png" alt="Title screen" loading="lazy">
-    <img src="images/list.png" alt="Password list screen" loading="lazy">
-    <img src="images/input.png" alt="Entry editor screen" loading="lazy">
-    <img src="images/cloud-provider.png" alt="Cloud sync provider selection screen" loading="lazy">
-    <img src="images/webdav.png" alt="WebDAV settings screen" loading="lazy">
-    <img src="images/xlsx.png" alt="XLSX import / export screen" loading="lazy">
+  <div class="carousel">
+    <button class="carousel-prev" type="button" aria-label="Previous">&#10094;</button>
+    <div class="screenshots">
+      <img src="images/title.png" alt="Title screen" loading="lazy">
+      <img src="images/list.png" alt="Password list screen" loading="lazy">
+      <img src="images/input.png" alt="Entry editor screen" loading="lazy">
+      <img src="images/cloud-provider.png" alt="Cloud sync provider selection screen" loading="lazy">
+      <img src="images/webdav.png" alt="WebDAV settings screen" loading="lazy">
+      <img src="images/xlsx.png" alt="XLSX import / export screen" loading="lazy">
+    </div>
+    <button class="carousel-next" type="button" aria-label="Next">&#10095;</button>
+    <div class="carousel-dots"></div>
   </div>
 
   <p>PassCat is a password manager that stores your passwords
@@ -248,9 +426,12 @@
   <p>We do not operate any server that stores your passwords.
      Your data lives only on your device and, if you choose, in your own cloud account.</p>
 
-  <p><em>Now available for Windows, Android and iOS:</em>
-     <a href="https://apps.apple.com/us/app/passcat/id6444306392">App Store</a> /
-     <a href="https://play.google.com/store/apps/details?id=com.cforever.mipass&amp;hl=en">Google Play</a></p>
+  <p class="platforms"><em>Now available for Windows, Android and iOS</em></p>
+  <p class="store-buttons">
+     <a class="btn" href="https://apps.apple.com/us/app/passcat/id6444306392"><svg aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+     <a class="btn" href="https://play.google.com/store/apps/details?id=com.cforever.mipass&amp;hl=en"><svg aria-hidden="true"><use href="#icon-googleplay"/></svg>Google Play</a>
+     <a class="btn" href="../download/PassCatSetup.exe" download><svg aria-hidden="true"><use href="#icon-windows"/></svg>Windows (exe)</a>
+     <a class="btn" href="../download/PassCatSetup.zip" download><svg aria-hidden="true"><use href="#icon-windows"/></svg>Windows (zip)</a></p>
 
   <h2>Getting Started</h2>
 
@@ -375,15 +556,14 @@
   </ul>
 
   <p>
-    <a href="privacy.html">Privacy Policy</a><br>
-    <a href="../">Back to BirdRune</a>
+    <a href="privacy.html">Privacy Policy</a>
   </p>
 
   </div>
 
   <footer>
-    お問い合わせ / Contact: <a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a><br>
-    © BirdRune
+    <span class="only-ja">お問い合わせ: </span><span class="only-en">Contact: </span><a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a> — <a href="../">Top</a><br>
+    © birdrune
   </footer>
 
   <script>
@@ -392,8 +572,11 @@
       document.getElementById('lang-en').hidden = (lang !== 'en');
       document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.querySelectorAll('.only-ja').forEach(function (el) { el.hidden = (lang !== 'ja'); });
+      document.querySelectorAll('.only-en').forEach(function (el) { el.hidden = (lang !== 'en'); });
       document.documentElement.lang = lang;
       try { localStorage.setItem('birdrune-lang', lang); } catch (e) { /* プライベートモード等では保存しない */ }
+      window.dispatchEvent(new Event('resize')); // 表示されたカルーセルのドットを作り直す
     }
     (function () {
       var saved = null;
@@ -401,6 +584,74 @@
       var lang = saved || ((navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en');
       setLang(lang);
     })();
+
+    function animateScroll(el, target, duration) {
+      var start = el.scrollLeft;
+      var change = target - start;
+      var t0 = null;
+      function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+      function frame(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min((ts - t0) / duration, 1);
+        el.scrollLeft = start + change * ease(p);
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    document.querySelectorAll('.carousel').forEach(function (root) {
+      var track = root.querySelector('.screenshots');
+      var dots = root.querySelector('.carousel-dots');
+      var imgs = track.querySelectorAll('img');
+      if (imgs.length < 2) return;
+      function stepSize() { return imgs[1].offsetLeft - imgs[0].offsetLeft; }
+      function dotIndex() {
+        var max = track.scrollWidth - track.clientWidth;
+        if (max <= 0) return 0;
+        return Math.round(track.scrollLeft / max * (imgs.length - 1));
+      }
+      function moveTo(i) {
+        var n = imgs.length;
+        i = ((i % n) + n) % n; // 端まで来たら反対側へループ
+        var max = track.scrollWidth - track.clientWidth;
+        animateScroll(track, max * i / (n - 1), 600);
+      }
+      function move(dir) { moveTo(dotIndex() + dir); }
+      function updateDots() {
+        var max = track.scrollWidth - track.clientWidth;
+        if (max <= 0) return;
+        var idx = Math.round(track.scrollLeft / max * (imgs.length - 1));
+        for (var i = 0; i < dots.children.length; i++) {
+          dots.children[i].classList.toggle('active', i === idx);
+        }
+      }
+      function buildDots() {
+        dots.innerHTML = '';
+        if (stepSize() <= 0) return; // 非表示中（言語切り替えで隠れている間）は作らない
+        for (var i = 0; i < imgs.length; i++) {
+          (function (i) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.setAttribute('aria-label', (i + 1) + ' / ' + imgs.length);
+            b.addEventListener('click', function () {
+              var max = track.scrollWidth - track.clientWidth;
+              animateScroll(track, max * i / (imgs.length - 1), 600);
+            });
+            dots.appendChild(b);
+          })(i);
+        }
+        updateDots();
+      }
+      track.addEventListener('scroll', updateDots);
+      window.addEventListener('resize', buildDots);
+      buildDots();
+      root.querySelector('.carousel-prev').addEventListener('click', function () { move(-1); });
+      root.querySelector('.carousel-next').addEventListener('click', function () { move(1); });
+      function play() { return setInterval(function () { move(1); }, 3500); }
+      var timer = play();
+      root.addEventListener('mouseenter', function () { clearInterval(timer); timer = null; });
+      root.addEventListener('mouseleave', function () { if (!timer) timer = play(); });
+    });
   </script>
 </body>
 </html>

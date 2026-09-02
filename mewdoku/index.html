@@ -4,41 +4,438 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mewdoku - BirdRune</title>
+  <meta name="description" content="Mewdoku（みぅどく）は、かわいい猫と一緒に楽しむナンプレ（ナンバープレース）パズル。10,000問以上を収録し、登録不要・オフラインで遊べます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light dark; }
+    :root {
+      --accent: #43cce6;
+      --btn: #43cce6;
+      --btn-hover: #8ee2f1;
+      --bg-soft: #f0fbfd;
+      --border-soft: #c6eef7;
+      --border-gray: #e6e6e6;
+      --heading: #073744;
+      --text: #234a52;
+    }
     body {
-      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-      max-width: 720px;
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      max-width: 760px;
       margin: 0 auto;
       padding: 2rem 1.25rem 4rem;
-      line-height: 1.8;
+      line-height: 1.9;
+      color: var(--text);
+      background: #fff;
     }
-    h1 { font-size: 1.8rem; }
-    footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
-    a { color: #2a7ae2; }
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--heading);
+      text-align: center;
+      margin: 1.5rem 0 50px;
+    }
+    h1 img {
+      height: 3.2em;
+      width: auto;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 10px;
+      padding: .45rem 1.1rem;
+      margin-top: 2.75rem;
+    }
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 1.75rem;
+    }
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-gray);
+      font-size: .85rem;
+      color: #6c6c6c;
+      text-align: center;
+    }
+    a { color: var(--accent); }
+    .store-buttons {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1.25rem 0 1.75rem;
+    }
+    .store-buttons .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--btn);
+      color: #fff;
+      font-weight: 700;
+      padding: .5rem 1.75rem;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background .3s;
+    }
+    .store-buttons .btn svg {
+      width: 1.1em;
+      height: 1.1em;
+      fill: currentColor;
+    }
+    .store-buttons .btn:hover,
+    .store-buttons .btn:focus { background: var(--btn-hover); }
+    .platforms { text-align: center; margin-bottom: .25rem; }
+    .lang-switch { text-align: right; margin-bottom: 1rem; font-size: .9rem; }
+    .lang-switch button {
+      background: none;
+      border: 1px solid var(--border-gray);
+      border-radius: 25px;
+      padding: 0 .75rem;
+      cursor: pointer;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 700;
+      min-width: 6.5em;
+      height: 2.2em;
+      line-height: 1;
+      text-align: center;
+      transition: background .3s;
+    }
+    .lang-switch button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .site-header .lang-switch { margin-bottom: 0; }
+    .site-logo img {
+      height: 5.2em;
+      width: auto;
+      display: block;
+    }
+    .screenshots {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      padding-bottom: .5rem;
+    }
+    .screenshots img {
+      flex-shrink: 0;
+      border: 1px solid var(--border-gray);
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    }
+    .carousel { position: relative; }
+    .carousel .screenshots {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .carousel .screenshots::-webkit-scrollbar { display: none; }
+    .carousel .screenshots img { width: calc((100% - 40px) / 3); }
+    @media (max-width: 600px) {
+      .carousel .screenshots img { width: calc((100% - 20px) / 2); }
+    }
+    .carousel-prev, .carousel-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      width: 2.2em;
+      height: 2.2em;
+      border: none;
+      border-radius: 50%;
+      background: rgba(67, 204, 230, .6);
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .carousel-prev:hover, .carousel-next:hover { background: var(--accent); }
+    .carousel-prev { left: .3rem; }
+    .carousel-next { right: .3rem; }
+    .carousel-dots { text-align: center; margin-top: .25rem; }
+    .carousel-dots button {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      margin: 0 5px;
+      border: none;
+      border-radius: 50%;
+      background: #d0d0d0;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .carousel-dots button.active { background: #333; }
   </style>
 </head>
 <body>
-  <h1>Mewdoku - みぅどく</h1>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="icon-apple" viewBox="0 0 24 24">
+      <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+    </symbol>
+    <symbol id="icon-googleplay" viewBox="0 0 24 24">
+      <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/>
+    </symbol>
+  </svg>
 
-  <p>猫と一緒に遊ぶナンバープレース（ナンプレ）パズルゲームです。<br>
-     かわいい猫のヒントに助けてもらいながら、気軽にパズルを楽しめます。</p>
+  <div class="site-header">
+    <a class="site-logo" href="../"><img src="../images/top-title.png" alt="アプリ倉庫 birdrune"></a>
+    <div class="lang-switch">
+      <button id="btn-ja" type="button" onclick="setLang('ja')">日本語</button>
+      <button id="btn-en" type="button" onclick="setLang('en')">English</button>
+    </div>
+  </div>
 
-  <p>Mewdoku is a sudoku puzzle game with cats.<br>
-     Enjoy casual sudoku puzzles with a little help from cute cats.</p>
+  <div id="lang-ja">
 
-  <p><em>公開中 / Now available:</em>
-     <a href="https://apps.apple.com/jp/app/id6804964831">App Store</a> ・
-     <a href="https://play.google.com/store/apps/details?id=com.birdrune.mewdoku">Google Play</a></p>
+  <h1><img src="../images/mewdoku-title.png" alt="Mewdoku - みぅどく"></h1>
+
+  <div class="carousel">
+    <button class="carousel-prev" type="button" aria-label="前へ">&#10094;</button>
+    <div class="screenshots">
+      <img src="images/st00.png" alt="難易度選択画面" loading="lazy">
+      <img src="images/st01.png" alt="パズル画面" loading="lazy">
+      <img src="images/st02.png" alt="ギャラリー画面" loading="lazy">
+      <img src="images/st03.png" alt="ヒント機能（ネコの手）" loading="lazy">
+    </div>
+    <button class="carousel-next" type="button" aria-label="次へ">&#10095;</button>
+    <div class="carousel-dots"></div>
+  </div>
+
+  <p>Mewdoku（みぅどく）は、かわいい猫と一緒に楽しむ
+     <strong>ナンプレ（ナンバープレース）パズル</strong>です。<br>
+     空いたマスに 1〜9 の数字を入れて、タテ・ヨコ・3×3 のブロックに
+     同じ数字が重ならないように埋めていく定番パズル。
+     ちょっとした時間の脳トレにぴったりです。</p>
+
+  <p>登録不要で、アプリを開いてすぐ遊べます。
+     完全オフライン対応なので、飛行機でも地下鉄でも自分のペースで楽しめます。</p>
+
+  <p class="platforms"><em>App Store / Google Play で公開中</em></p>
+  <p class="store-buttons">
+     <a class="btn" href="https://apps.apple.com/jp/app/id6804964831"><svg aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+     <a class="btn" href="https://play.google.com/store/apps/details?id=com.birdrune.mewdoku"><svg aria-hidden="true"><use href="#icon-googleplay"/></svg>Google Play</a></p>
+
+  <h2>Mewdoku の特徴</h2>
+
+  <h3>収録 10,000 問以上、すべて「唯一解」</h3>
+  <p>収録している問題は 10,000 問以上。全問「解が 1 つだけ」であることを検証済みで、
+     運まかせの盤面はありません。難易度は人間の解法テクニックで採点しているので、
+     「星 3 なのに激ムズ」のような裏切りもありません。</p>
+
+  <h3>実力で解禁する、かんたん〜超難問の難易度</h3>
+  <p>ほぼ埋まった超入門から、腕自慢もうなる超難問まで。
+     同じレベルで連続クリアすると、次の難易度が解禁されます。
+     メニューで選ぶのではなく自分の実力で勝ち取るから、解禁の瞬間がうれしい。</p>
+
+  <h3>突然はじまる「段位戦」</h3>
+  <p>調子よく解いていると、不意に段位戦が発生！勝てば段位がアップします。
+     一度上がった段位は二度と下がりません。
+     数字が積み上がるたび、確かに強くなっている自分を実感できます。</p>
+
+  <h3>毎日ちがう顔のデイリー問題</h3>
+  <p>1 日 1 回のデイリー問題。今日の 1 問はサクッと解けるか、骨のある難問か——
+     開けてみるまでわかりません。遊べない日があっても、
+     連続記録のリセットもペナルティもなし。パズルはいつでもあなたを待っています。</p>
+
+  <h3>解くほど集まる、ごほうびイラスト</h3>
+  <p>クリアで貯めたポイントは、ギャラリーのイラストと交換できます。
+     ガチャなし・ランダムなし。ほしいものを選んで、確実に手に入れられます。</p>
+
+  <h3>困ったときは、ネコの手</h3>
+  <p>じっくり考えるためのメモ機能つき。
+     行き詰まったら、猫がいらない候補の数字を消してくれるヒント機能もあります。</p>
+
+  <h3>じゃまをしない広告</h3>
+  <p>プレイを中断する全画面広告はありません。動画広告は、見たいときだけ。</p>
+
+  <h3>いつでも、どこでも</h3>
+  <p>登録不要・完全オフライン・自動セーブ。中断してもすぐ続きから遊べます。
+     日本語を含む 11 言語に対応しています。</p>
 
   <p>
-    <a href="privacy.html">プライバシーポリシー / Privacy Policy</a><br>
-    <a href="../">BirdRune トップへ / Back to BirdRune</a>
+    <a href="privacy.html">プライバシーポリシー</a>
   </p>
 
+  </div>
+
+  <div id="lang-en">
+
+  <h1><img src="../images/mewdoku-title.png" alt="Mewdoku - Cat Sudoku"></h1>
+
+  <div class="carousel">
+    <button class="carousel-prev" type="button" aria-label="Previous">&#10094;</button>
+    <div class="screenshots">
+      <img src="images/st00-en.png" alt="Level select screen" loading="lazy">
+      <img src="images/st01-en.png" alt="Puzzle screen" loading="lazy">
+      <img src="images/st02-en.png" alt="Gallery screen" loading="lazy">
+      <img src="images/st03-en.png" alt="Hint feature — a helping paw" loading="lazy">
+    </div>
+    <button class="carousel-next" type="button" aria-label="Next">&#10095;</button>
+    <div class="carousel-dots"></div>
+  </div>
+
+  <p>Mewdoku is a <strong>sudoku puzzle game</strong> you play alongside adorable cats.<br>
+     Fill the empty cells with numbers 1–9 so that no number repeats in any row,
+     column, or 3×3 box — perfect for a quick brain workout anytime.</p>
+
+  <p>No sign-up required: open the app and you're solving.
+     It works fully offline, so you can play at your own pace on a plane or on the subway.</p>
+
+  <p class="platforms"><em>Now available on the App Store and Google Play</em></p>
+  <p class="store-buttons">
+     <a class="btn" href="https://apps.apple.com/us/app/id6804964831"><svg aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+     <a class="btn" href="https://play.google.com/store/apps/details?id=com.birdrune.mewdoku&amp;hl=en"><svg aria-hidden="true"><use href="#icon-googleplay"/></svg>Google Play</a></p>
+
+  <h2>Features</h2>
+
+  <h3>10,000+ puzzles, every one with exactly one solution</h3>
+  <p>Over 10,000 puzzles, each verified to have a single unique solution —
+     no luck-based grids. Difficulty is rated by the real human techniques each puzzle
+     takes, so a three-star puzzle never turns out to be a nightmare.</p>
+
+  <h3>Difficulty levels you earn, from easy to expert</h3>
+  <p>From nearly complete beginner grids to fiendish puzzles that make veterans
+     sit up straight. Win a few puzzles in a row and the next difficulty unlocks —
+     it's not a menu setting, it's something you earn.</p>
+
+  <h3>Surprise Master Challenges</h3>
+  <p>Just when you're in the groove, a Master Challenge appears!
+     Beat it and your Master Level rises — permanently. It never drops, no matter what.</p>
+
+  <h3>A new puzzle every day</h3>
+  <p>Today's daily puzzle might be a quick win or a real brain-bender —
+     you won't know until you open it. Missed a day? Nothing is lost:
+     no broken streaks, no penalties. The puzzles wait for you.</p>
+
+  <h3>Win points, collect art</h3>
+  <p>Every victory earns points to spend on gallery artwork.
+     No gacha, no randomness — see it, want it, unlock it.</p>
+
+  <h3>Stuck? Get a helping paw</h3>
+  <p>Pencil marks help you plot your way through the tough ones.
+     And when you're stuck, a cat will erase unwanted candidate numbers for you.</p>
+
+  <h3>Ads that stay out of the way</h3>
+  <p>No full-screen ads interrupting your game. Video ads play only when you choose.</p>
+
+  <h3>Yours, anywhere</h3>
+  <p>No account, fully offline, automatic saving — pick up right where you left off.
+     Available in 11 languages.</p>
+
+  <p>
+    <a href="privacy.html">Privacy Policy</a>
+  </p>
+
+  </div>
+
   <footer>
-    お問い合わせ / Contact: <a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a><br>
-    © BirdRune
+    <span class="only-ja">お問い合わせ: </span><span class="only-en">Contact: </span><a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a> — <a href="../">Top</a><br>
+    © birdrune
   </footer>
+
+  <script>
+    function setLang(lang) {
+      document.getElementById('lang-ja').hidden = (lang !== 'ja');
+      document.getElementById('lang-en').hidden = (lang !== 'en');
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.querySelectorAll('.only-ja').forEach(function (el) { el.hidden = (lang !== 'ja'); });
+      document.querySelectorAll('.only-en').forEach(function (el) { el.hidden = (lang !== 'en'); });
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('birdrune-lang', lang); } catch (e) { /* プライベートモード等では保存しない */ }
+      window.dispatchEvent(new Event('resize')); // 表示されたカルーセルのドットを作り直す
+    }
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('birdrune-lang'); } catch (e) {}
+      var lang = saved || ((navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en');
+      setLang(lang);
+    })();
+
+    function animateScroll(el, target, duration) {
+      var start = el.scrollLeft;
+      var change = target - start;
+      var t0 = null;
+      function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+      function frame(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min((ts - t0) / duration, 1);
+        el.scrollLeft = start + change * ease(p);
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    document.querySelectorAll('.carousel').forEach(function (root) {
+      var track = root.querySelector('.screenshots');
+      var dots = root.querySelector('.carousel-dots');
+      var imgs = track.querySelectorAll('img');
+      if (imgs.length < 2) return;
+      function stepSize() { return imgs[1].offsetLeft - imgs[0].offsetLeft; }
+      function dotIndex() {
+        var max = track.scrollWidth - track.clientWidth;
+        if (max <= 0) return 0;
+        return Math.round(track.scrollLeft / max * (imgs.length - 1));
+      }
+      function moveTo(i) {
+        var n = imgs.length;
+        i = ((i % n) + n) % n; // 端まで来たら反対側へループ
+        var max = track.scrollWidth - track.clientWidth;
+        animateScroll(track, max * i / (n - 1), 600);
+      }
+      function move(dir) { moveTo(dotIndex() + dir); }
+      function updateDots() {
+        var max = track.scrollWidth - track.clientWidth;
+        if (max <= 0) return;
+        var idx = Math.round(track.scrollLeft / max * (imgs.length - 1));
+        for (var i = 0; i < dots.children.length; i++) {
+          dots.children[i].classList.toggle('active', i === idx);
+        }
+      }
+      function buildDots() {
+        dots.innerHTML = '';
+        if (stepSize() <= 0) return; // 非表示中（言語切り替えで隠れている間）は作らない
+        for (var i = 0; i < imgs.length; i++) {
+          (function (i) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.setAttribute('aria-label', (i + 1) + ' / ' + imgs.length);
+            b.addEventListener('click', function () {
+              var max = track.scrollWidth - track.clientWidth;
+              animateScroll(track, max * i / (imgs.length - 1), 600);
+            });
+            dots.appendChild(b);
+          })(i);
+        }
+        updateDots();
+      }
+      track.addEventListener('scroll', updateDots);
+      window.addEventListener('resize', buildDots);
+      buildDots();
+      root.querySelector('.carousel-prev').addEventListener('click', function () { move(-1); });
+      root.querySelector('.carousel-next').addEventListener('click', function () { move(1); });
+      function play() { return setInterval(function () { move(1); }, 3500); }
+      var timer = play();
+      root.addEventListener('mouseenter', function () { clearInterval(timer); timer = null; });
+      root.addEventListener('mouseleave', function () { if (!timer) timer = play(); });
+    });
+  </script>
 </body>
 </html>
