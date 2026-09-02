@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>プライバシーポリシー / Privacy Policy - passCat</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+      line-height: 1.8;
+    }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; border-bottom: 1px solid #8884; padding-bottom: .25rem; }
+    footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
+    a { color: #2a7ae2; }
+    hr.lang { margin: 3rem 0; border: none; border-top: 2px solid #8886; }
+  </style>
+</head>
+<body>
+  <h1>passCat プライバシーポリシー</h1>
+
+  <p>BirdRune（以下「当方」）は、パスワード管理アプリ「passCat」（以下「本アプリ」）に
+     おけるユーザー情報の取り扱いについて、以下のとおり定めます。</p>
+
+  <h2>1. 基本方針</h2>
+  <p>本アプリに登録されたパスワード等のデータは、暗号化されたうえで
+     <strong>ユーザーの端末内</strong>に保存されます。
+     当方は、ユーザーのパスワードデータを保存・閲覧できるサーバーを運営していません。
+     クラウド同期を有効にした場合も、データの保存先は
+     <strong>ユーザー自身のクラウドアカウント</strong>であり、当方がその内容にアクセスすることはありません。</p>
+
+  <h2>2. 収集・利用する情報</h2>
+  <ul>
+    <li><strong>メールアドレス</strong> — サインイン時の本人確認（ワンタイムコードの送信）にのみ使用します。
+        メールアドレスは暗号化されたデータの一部として端末内（および同期先のユーザー自身のクラウド）に
+        保存されます。当方が広告・マーケティング等の目的で利用することはありません。</li>
+    <li><strong>登録データ（パスワード等）</strong> — 暗号化して端末内に保存されます。
+        クラウド同期を有効にした場合、暗号化済みファイルのみがユーザー自身のクラウドへアップロードされます。</li>
+    <li><strong>クラウド認証情報</strong> — 各クラウドサービスへのアクセストークン、および
+        WebDAV の接続情報（URL・ユーザー名・パスワード）は、暗号化して端末内に保存されます。</li>
+  </ul>
+  <p>本アプリは、広告 SDK・アクセス解析 SDK・トラッキング SDK を使用していません。</p>
+
+  <h2>3. 通信について</h2>
+  <p>本アプリは、次の目的でのみネットワーク通信を行います。</p>
+  <ul>
+    <li>サインイン用ワンタイムコードのメール送信</li>
+    <li>クラウド同期を有効にした場合の、選択したクラウドサービスとの暗号化ファイルの送受信</li>
+    <li>データの更新日時を正確に記録するための時刻取得（NTP）</li>
+  </ul>
+
+  <h2>4. クラウド同期と第三者サービス</h2>
+  <p>クラウド同期は任意の機能であり、ユーザーが明示的に有効化した場合にのみ動作します。
+     各サービスへのアクセス範囲は次のとおりです。</p>
+  <ul>
+    <li><strong>Google Drive</strong>（Google LLC）— 本アプリが作成したファイルのみに
+        アクセスできる drive.file スコープを使用します。
+        （<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google プライバシーポリシー</a>）</li>
+    <li><strong>Dropbox</strong>（Dropbox, Inc.）— 専用のアプリフォルダのみにアクセスします。
+        （<a href="https://www.dropbox.com/privacy" target="_blank" rel="noopener">Dropbox プライバシーポリシー</a>）</li>
+    <li><strong>Box</strong>（Box, Inc.）— Box の仕様上、アカウント内のファイルの読み書き権限が
+        付与されますが、本アプリが操作するのは本アプリの保存ファイルのみです。
+        （<a href="https://www.box.com/legal/privacypolicy" target="_blank" rel="noopener">Box プライバシーポリシー</a>）</li>
+    <li><strong>WebDAV</strong> — ユーザーが指定したサーバーの、指定 URL 直下の専用フォルダのみに
+        アクセスします。接続は https に限定されます。</li>
+  </ul>
+  <p>本アプリによる Google API から取得した情報の利用は、
+     <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API サービスのユーザーデータに関するポリシー</a>
+     （限定使用の要件を含む）に準拠します。</p>
+
+  <h2>5. 生体認証について</h2>
+  <p>生体認証（指紋・顔認証）を選択した場合、認証処理は OS の機能によって行われます。
+     本アプリが指紋・顔などの生体情報そのものを取得・保存することはありません。</p>
+
+  <h2>6. クリップボードについて</h2>
+  <p>コピー機能を使用すると、選択した値が OS のクリップボードに格納されます。
+     クリップボードの内容は他のアプリから参照できる場合があるため、
+     貼り付け後は他の文字列で上書きすることをおすすめします。
+     本アプリがクリップボードの内容を外部へ送信することはありません。</p>
+
+  <h2>7. データの削除</h2>
+  <p>アプリ内のリセット機能により、端末内の保存データを削除できます。
+     クラウド上の保存ファイルは、同期先をローカルストレージへ切り替えた際に自動的に削除されるほか、
+     各クラウドサービス上から直接削除することもできます。</p>
+
+  <h2>8. お問い合わせ</h2>
+  <p>本ポリシーに関するお問い合わせは、以下までご連絡ください。</p>
+  <p>birdrune00@gmail.com</p>
+
+  <h2>9. 改定</h2>
+  <p>本ポリシーの内容は、必要に応じて予告なく変更されることがあります。
+     変更後の内容は本ページに掲載した時点で効力を生じます。</p>
+
+  <p>制定日: 2026/09/02</p>
+
+  <hr class="lang">
+
+  <h1>passCat Privacy Policy</h1>
+
+  <p>BirdRune ("we") describes below how user information is handled in the
+     password manager application "passCat" (the "App").</p>
+
+  <h2>1. Our Approach</h2>
+  <p>Passwords and other data registered in the App are stored
+     <strong>encrypted on your device</strong>.
+     We do not operate any server that stores or can read your password data.
+     When cloud sync is enabled, data is stored in
+     <strong>your own cloud account</strong>; we have no access to its contents.</p>
+
+  <h2>2. Information We Collect and Use</h2>
+  <ul>
+    <li><strong>Email address</strong> — used only to verify your identity at sign-in
+        (sending a one-time code). It is stored as part of your encrypted data on your device
+        (and in your own cloud if sync is enabled). We do not use it for advertising or marketing.</li>
+    <li><strong>Registered data (passwords, etc.)</strong> — stored encrypted on your device.
+        With cloud sync enabled, only the encrypted file is uploaded to your own cloud.</li>
+    <li><strong>Cloud credentials</strong> — access tokens for cloud services and WebDAV
+        connection details (URL, username, password) are stored encrypted on your device.</li>
+  </ul>
+  <p>The App contains no advertising, analytics or tracking SDKs.</p>
+
+  <h2>3. Network Communication</h2>
+  <p>The App communicates over the network only for the following purposes:</p>
+  <ul>
+    <li>Sending the one-time sign-in code by email</li>
+    <li>Transferring the encrypted file to/from your chosen cloud service, when cloud sync is enabled</li>
+    <li>Obtaining accurate time (NTP) to record data update timestamps</li>
+  </ul>
+
+  <h2>4. Cloud Sync and Third-Party Services</h2>
+  <p>Cloud sync is optional and operates only when you explicitly enable it.
+     The App's access to each service is as follows:</p>
+  <ul>
+    <li><strong>Google Drive</strong> (Google LLC) — uses the drive.file scope,
+        which allows access only to files created by the App.
+        (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>)</li>
+    <li><strong>Dropbox</strong> (Dropbox, Inc.) — accesses only a dedicated app folder.
+        (<a href="https://www.dropbox.com/privacy" target="_blank" rel="noopener">Dropbox Privacy Policy</a>)</li>
+    <li><strong>Box</strong> (Box, Inc.) — due to how Box works, the App is granted read/write
+        access to files in your account, but it only ever operates on its own save file.
+        (<a href="https://www.box.com/legal/privacypolicy" target="_blank" rel="noopener">Box Privacy Policy</a>)</li>
+    <li><strong>WebDAV</strong> — accesses only a dedicated folder under the server URL you
+        specify. Connections are limited to https.</li>
+  </ul>
+  <p>The App's use of information received from Google APIs adheres to the
+     <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>,
+     including the Limited Use requirements.</p>
+
+  <h2>5. Biometric Authentication</h2>
+  <p>If you choose biometric sign-in (fingerprint / face recognition), authentication is
+     performed by the operating system. The App never accesses or stores your biometric data itself.</p>
+
+  <h2>6. Clipboard</h2>
+  <p>When you use the copy feature, the selected value is placed on the OS clipboard.
+     Clipboard contents may be readable by other apps, so we recommend overwriting the
+     clipboard after pasting. The App never transmits clipboard contents anywhere.</p>
+
+  <h2>7. Data Deletion</h2>
+  <p>You can delete the data stored on your device using the in-app reset function.
+     The save file in your cloud is deleted automatically when you switch sync back to
+     local storage, and you can also delete it directly from your cloud service.</p>
+
+  <h2>8. Contact</h2>
+  <p>If you have any questions about this policy, please contact us at:</p>
+  <p>birdrune00@gmail.com</p>
+
+  <h2>9. Changes</h2>
+  <p>This policy may be updated from time to time. Changes take effect when
+     posted on this page.</p>
+
+  <p>Effective date: September 2, 2026</p>
+
+  <footer>
+    © BirdRune — <a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a> — <a href="../">Top</a>
+  </footer>
+</body>
+</html>

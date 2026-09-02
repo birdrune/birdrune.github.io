@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>passCat - BirdRune</title>
+  <meta name="description" content="passCat は、パスワードを端末内に暗号化して保存し、必要なときにワンタップでコピーできるパスワード管理アプリです。">
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+      line-height: 1.8;
+    }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.25rem; margin-top: 2.5rem; border-bottom: 1px solid #8884; padding-bottom: .25rem; }
+    h3 { font-size: 1.05rem; margin-top: 1.75rem; }
+    footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
+    a { color: #2a7ae2; }
+    ol.steps > li { margin: .75rem 0; }
+    .note {
+      border: 1px solid #8884;
+      border-left: 4px solid #e2a52a;
+      border-radius: 6px;
+      padding: .75rem 1rem;
+      margin: 1rem 0;
+      font-size: .95rem;
+    }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+    th, td { border: 1px solid #8884; padding: .4rem .6rem; text-align: left; vertical-align: top; }
+    hr.lang { margin: 3rem 0; border: none; border-top: 2px solid #8886; }
+  </style>
+</head>
+<body>
+  <h1>passCat - ぱすキャット</h1>
+
+  <p>passCat は、パスワードを<strong>端末の中に暗号化して保存</strong>し、
+     必要なときにワンタップでコピーして使えるパスワード管理アプリです。<br>
+     ご希望の場合のみ、<strong>ご自身のクラウド</strong>（Google Drive / Dropbox / Box / WebDAV）と
+     同期して、複数の端末で同じデータを使うことができます。</p>
+
+  <p>当方がパスワードをお預かりするサーバーはありません。
+     データはあなたの端末と、あなたが選んだあなた自身のクラウドにだけ保存されます。</p>
+
+  <p><em>Windows / Android / iOS 向けに近日公開予定</em></p>
+
+  <h2>passCat を正しく使う手順</h2>
+
+  <h3>1. 初期設定</h3>
+  <ol class="steps">
+    <li><strong>メールアドレスを登録する</strong><br>
+        初回起動時にメールアドレスを入力すると、6 桁のワンタイムコードが届きます。
+        60 秒以内に入力して本人確認を完了してください。</li>
+    <li><strong>サインイン方式を選ぶ</strong><br>
+        次のいずれかを選択できます。
+        <ul>
+          <li><strong>メール認証</strong> — 起動のたびにワンタイムコードで確認します。最も確実ですがひと手間かかります。</li>
+          <li><strong>オフラインパスワード</strong> — アプリ専用のマスターパスワードを設定します。ネット接続なしでサインインできます。</li>
+          <li><strong>生体認証</strong>（Android / iOS）— 指紋・顔認証でサインインできます。</li>
+        </ul></li>
+    <li><strong>自動サインアウト時間を設定する</strong><br>
+        設定画面で 5 分〜12 時間の範囲で選べます。席を離れることが多い環境では短めをおすすめします。</li>
+  </ol>
+
+  <div class="note">
+    <strong>重要:</strong> オフラインパスワードを忘れると、当方でも復元することはできません。
+    忘れない方法で管理してください。
+  </div>
+
+  <h3>2. パスワードを登録する</h3>
+  <ol class="steps">
+    <li>一覧画面の追加ボタンから入力画面を開きます。</li>
+    <li><strong>タイトル</strong>（サービス名など）と、必要に応じて<strong>サブタイトル・URL・タグ</strong>を入力します。</li>
+    <li>項目欄には「名前と値」のペアを最大 5 つまで登録できます。
+        <strong>1 番目の項目にはユーザー名（アカウント名・メールアドレスなど）</strong>を、
+        <strong>2 番目以降にパスワード</strong>を入れるのがおすすめです。
+        一覧画面のボタン配置がこの並びを前提にしています。</li>
+    <li><strong>メモ欄</strong>には自由にメモを残せます。値を変更した際は変更履歴も記録されます。</li>
+  </ol>
+
+  <h3>3. パスワードを使う</h3>
+  <ol class="steps">
+    <li>一覧から目的のサービスを探します。タイトル・タグでの検索もできます。</li>
+    <li><strong>アカウントボタン</strong>をタップすると、ユーザー名がコピーされ、登録した URL が開きます。</li>
+    <li><strong>パスワードボタン</strong>（<code>******</code> とマスク表示されています）をタップすると、
+        パスワードがクリップボードにコピーされます。開いたログイン画面に貼り付けてください。</li>
+  </ol>
+
+  <div class="note">
+    コピーしたパスワードはシステムのクリップボードに入ります。
+    貼り付けが終わったら、別の文字列をコピーするなどしてクリップボードを上書きしておくと、より安全です。
+  </div>
+
+  <h3>4. クラウド同期を設定する（任意）</h3>
+  <ol class="steps">
+    <li>設定画面から同期先を選びます: <strong>Google Drive / Dropbox / Box / WebDAV</strong></li>
+    <li>選んだサービスのサインイン画面が開くので、ご自身のアカウントで認証してください。</li>
+    <li>以後、変更は自動的にクラウドへ保存されます。別の端末で同じメールアドレス・同じクラウドを設定すると、
+        データが自動でマージされ、どの端末でも同じ内容になります。</li>
+  </ol>
+
+  <h2>機能の詳細</h2>
+
+  <h3>暗号化保存</h3>
+  <p>登録したデータは AES 暗号化を施したファイルとして端末内に保存されます。
+     クラウドへアップロードされるのも、この暗号化済みファイルだけです。
+     平文のパスワードがそのままネットワークに流れたり、クラウドに置かれたりすることはありません。</p>
+
+  <h3>クラウド同期と複数端末の利用</h3>
+  <p>同期はすべて「あなた自身のクラウドアカウント」に対して行われます。
+     複数の端末で編集した場合は、エントリごとに更新日時の新しい方が採用される形で自動的にマージされます。
+     また、家族などで同じクラウドアカウントを共有している場合でも、
+     保存ファイル名は passCat の登録メールアドレスごとに分かれるため、互いのデータが混ざることはありません。</p>
+
+  <table>
+    <tr><th>同期先</th><th>アプリがアクセスできる範囲</th></tr>
+    <tr><td>Google Drive</td><td>passCat が作成したファイルのみ（drive.file スコープ）</td></tr>
+    <tr><td>Dropbox</td><td>専用のアプリフォルダ（アプリ/passCat）のみ</td></tr>
+    <tr><td>Box</td><td>アカウント内のファイル全般（Box にはアプリ専用領域の仕組みがないため）</td></tr>
+    <tr><td>WebDAV</td><td>指定したサーバー URL 直下の mipass フォルダ</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Box をお使いの方へ:</strong> Box のみ、サービスの仕様上アプリに与えられる権限が
+    「アカウント全体のファイルの読み書き」になります。passCat が実際に操作するのは自分の保存ファイルだけですが、
+    より狭い権限で使いたい場合は Google Drive または Dropbox をおすすめします。
+  </div>
+
+  <div class="note">
+    <strong>WebDAV をお使いの方へ:</strong> 接続先は https のサーバーのみ利用できます。
+    Nextcloud などアプリパスワードを発行できるサーバーでは、アカウント本体のパスワードではなく
+    アプリパスワードの使用をおすすめします。
+  </div>
+
+  <h3>パスワード自動生成</h3>
+  <p>入力画面の生成ボタンで、強いパスワードを自動生成できます。
+     ボタンを押すたびに「数字＋小文字」→「大文字入り」→「記号入り」と強度が切り替わります。
+     また、入力したパスワードの強度が 0〜100 で表示されるので、使い回しや弱いパスワードの見直しに役立ちます。</p>
+
+  <h3>自動サインアウト</h3>
+  <p>操作しない状態が設定時間（5 分〜12 時間）続くと、自動的にサインイン画面へ戻ります。
+     端末を開いたままにしてしまっても、パスワード一覧が表示され続けることはありません。</p>
+
+  <h3>インポート / エクスポート（XLSX）</h3>
+  <p>登録データを Excel 形式（XLSX）でエクスポートしたり、同じ形式のファイルから取り込んだりできます。
+     他のパスワード管理からの乗り換えや、バックアップの確認に利用できます。</p>
+  <div class="note">
+    <strong>注意:</strong> エクスポートされる XLSX は<strong>暗号化されていない平文</strong>です。
+    内容の確認・移行が済んだら、必ずファイルを削除してください。
+  </div>
+
+  <h3>登録件数</h3>
+  <p>無料版では 50 件まで登録できます。有料版では 10,000 件まで拡張されます。</p>
+
+  <h2>安全にお使いいただくために</h2>
+  <ul>
+    <li>オフラインパスワードは長く・推測されにくいものにし、絶対に忘れないでください。当方でも復元できません。</li>
+    <li>データは端末内にも常に保存されています。クラウド障害時も端末内のデータから復旧できます。</li>
+    <li>エクスポートした XLSX ファイルは平文です。取り扱いに十分注意してください。</li>
+    <li>端末自体の画面ロック（PIN・生体認証）も併用してください。</li>
+  </ul>
+
+  <p>
+    <a href="privacy.html">プライバシーポリシー / Privacy Policy</a><br>
+    <a href="../">BirdRune トップへ / Back to BirdRune</a>
+  </p>
+
+  <hr class="lang">
+
+  <h1>passCat</h1>
+
+  <p>passCat is a password manager that stores your passwords
+     <strong>encrypted on your own device</strong>, ready to copy with a single tap.
+     Optionally, it can sync with <strong>your own cloud storage</strong>
+     (Google Drive / Dropbox / Box / WebDAV) so you can use the same data on multiple devices.</p>
+
+  <p>We do not operate any server that stores your passwords.
+     Your data lives only on your device and, if you choose, in your own cloud account.</p>
+
+  <p><em>Coming soon for Windows, Android and iOS</em></p>
+
+  <h2>Getting Started</h2>
+
+  <h3>1. Initial setup</h3>
+  <ol class="steps">
+    <li><strong>Register your email address.</strong>
+        On first launch, enter your email address; a 6-digit one-time code will be sent to you.
+        Enter it within 60 seconds to verify.</li>
+    <li><strong>Choose a sign-in method:</strong>
+        <ul>
+          <li><strong>Email verification</strong> — a one-time code on every launch. Most reliable, slightly more effort.</li>
+          <li><strong>Offline password</strong> — a master password for this app. Works without a network connection.</li>
+          <li><strong>Biometric</strong> (Android / iOS) — sign in with fingerprint or face recognition.</li>
+        </ul></li>
+    <li><strong>Set the auto sign-out timer</strong> (5 minutes to 12 hours) in Settings.
+        A shorter time is recommended if you often leave your device unattended.</li>
+  </ol>
+
+  <div class="note">
+    <strong>Important:</strong> If you forget your offline password, we cannot recover it for you.
+    Keep it somewhere safe.
+  </div>
+
+  <h3>2. Adding entries</h3>
+  <ol class="steps">
+    <li>Open the entry editor from the list screen.</li>
+    <li>Enter a <strong>title</strong> (service name), and optionally a subtitle, URL and tags.</li>
+    <li>Each entry holds up to 5 name/value fields.
+        We recommend putting your <strong>username in the first field</strong> and
+        <strong>passwords in the following fields</strong> — the list screen's buttons are laid out with this in mind.</li>
+    <li>The <strong>memo field</strong> is free-form; a change history is recorded when you modify values.</li>
+  </ol>
+
+  <h3>3. Using entries</h3>
+  <ol class="steps">
+    <li>Find the service in the list; you can search by title or tag.</li>
+    <li>Tap the <strong>account button</strong> to copy your username and open the registered URL.</li>
+    <li>Tap a <strong>password button</strong> (masked as <code>******</code>) to copy the password
+        to the clipboard, then paste it into the login form.</li>
+  </ol>
+
+  <div class="note">
+    Copied passwords go to the system clipboard. After pasting, consider copying
+    something else to overwrite the clipboard for extra safety.
+  </div>
+
+  <h3>4. Cloud sync (optional)</h3>
+  <ol class="steps">
+    <li>In Settings, choose a sync provider: <strong>Google Drive / Dropbox / Box / WebDAV</strong>.</li>
+    <li>Sign in with your own account when the provider's sign-in screen appears.</li>
+    <li>Changes are saved to your cloud automatically. Set up the same email address and the same
+        cloud on another device, and your data merges automatically across devices.</li>
+  </ol>
+
+  <h2>Features in Detail</h2>
+
+  <h3>Encrypted storage</h3>
+  <p>Your data is stored on the device as an AES-encrypted file, and only this encrypted file
+     is ever uploaded to your cloud. Plain-text passwords are never sent over the network
+     or stored in the cloud.</p>
+
+  <h3>Cloud sync and multi-device use</h3>
+  <p>Sync always targets your own cloud account. When you edit on multiple devices,
+     entries are merged automatically, keeping the most recently updated version of each entry.
+     Even if you share one cloud account with family members, each passCat user's file is
+     kept separate per registered email address, so data never gets mixed up.</p>
+
+  <table>
+    <tr><th>Provider</th><th>What the app can access</th></tr>
+    <tr><td>Google Drive</td><td>Only files created by passCat (drive.file scope)</td></tr>
+    <tr><td>Dropbox</td><td>Only a dedicated app folder (Apps/passCat)</td></tr>
+    <tr><td>Box</td><td>Files across your account (Box offers no app-only scope)</td></tr>
+    <tr><td>WebDAV</td><td>The mipass folder under the server URL you specify</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Note for Box users:</strong> Due to how Box works, the app is granted read/write
+    access to files across your account. passCat only ever touches its own save file, but if you
+    prefer a narrower permission, we recommend Google Drive or Dropbox.
+  </div>
+
+  <div class="note">
+    <strong>Note for WebDAV users:</strong> Only https servers are supported. If your server
+    can issue app passwords (e.g. Nextcloud), use an app password instead of your account password.
+  </div>
+
+  <h3>Password generator</h3>
+  <p>Generate strong passwords in the entry editor. Each press of the generate button cycles the
+     strength: digits + lowercase → with uppercase → with symbols. A 0–100 strength meter is also
+     shown for any password you type, helping you spot weak or reused passwords.</p>
+
+  <h3>Auto sign-out</h3>
+  <p>After the configured idle time (5 minutes to 12 hours), the app returns to the sign-in
+     screen automatically, so your password list is never left on screen.</p>
+
+  <h3>Import / Export (XLSX)</h3>
+  <p>You can export your data as an Excel (XLSX) file and import from the same format —
+     useful for migrating from another password manager or reviewing a backup.</p>
+  <div class="note">
+    <strong>Caution:</strong> Exported XLSX files are <strong>unencrypted plain text</strong>.
+    Delete the file once you are done with it.
+  </div>
+
+  <h3>Entry limit</h3>
+  <p>The free version stores up to 50 entries; the paid version extends this to 10,000.</p>
+
+  <h2>Staying Safe</h2>
+  <ul>
+    <li>Choose a long, hard-to-guess offline password and never forget it — we cannot recover it.</li>
+    <li>Your data is always kept on the device as well; you can recover from it even if your cloud is unavailable.</li>
+    <li>Exported XLSX files are plain text — handle them with care.</li>
+    <li>Also use your device's own screen lock (PIN / biometrics).</li>
+  </ul>
+
+  <p>
+    <a href="privacy.html">Privacy Policy</a><br>
+    <a href="../">Back to BirdRune</a>
+  </p>
+
+  <footer>
+    お問い合わせ / Contact: <a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a><br>
+    © BirdRune
+  </footer>
+</body>
+</html>
