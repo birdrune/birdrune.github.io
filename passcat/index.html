@@ -56,6 +56,17 @@
       color: var(--blue);
       margin-top: 1.75rem;
     }
+    h3::before {
+      content: "";
+      display: inline-block;
+      width: 1.1em;
+      height: 1.1em;
+      margin-right: .4em;
+      vertical-align: -.15em;
+      background-color: var(--blue);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M6 10V7a6 6 0 0 1 12 0v3h.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H6zm2 0h8V7a4 4 0 0 0-8 0v3zm4 4.2a1.9 1.9 0 0 0-.95 3.55v1.55a.95.95 0 0 0 1.9 0v-1.55A1.9 1.9 0 0 0 12 14.2z'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M6 10V7a6 6 0 0 1 12 0v3h.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H6zm2 0h8V7a4 4 0 0 0-8 0v3zm4 4.2a1.9 1.9 0 0 0-.95 3.55v1.55a.95.95 0 0 0 1.9 0v-1.55A1.9 1.9 0 0 0 12 14.2z'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
     footer {
       margin-top: 3.5rem;
       padding-top: 1.25rem;
