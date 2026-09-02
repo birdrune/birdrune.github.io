@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>passCat - BirdRune</title>
-  <meta name="description" content="passCat は、パスワードを端末内に暗号化して保存し、必要なときにワンタップでコピーできるパスワード管理アプリです。">
+  <title>PassCat - BirdRune</title>
+  <meta name="description" content="PassCat は、パスワードを端末内に暗号化して保存し、必要なときにワンタップでコピーできるパスワード管理アプリです。">
   <style>
     :root { color-scheme: light dark; }
     body {
@@ -30,13 +30,60 @@
     }
     table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
     th, td { border: 1px solid #8884; padding: .4rem .6rem; text-align: left; vertical-align: top; }
-    hr.lang { margin: 3rem 0; border: none; border-top: 2px solid #8886; }
+    .lang-switch { text-align: right; margin-bottom: 1rem; font-size: .9rem; }
+    .lang-switch button {
+      background: none;
+      border: 1px solid #8884;
+      border-radius: 6px;
+      padding: 0 .75rem;
+      cursor: pointer;
+      color: inherit;
+      font-size: inherit;
+      min-width: 6.5em;
+      height: 2.2em;
+      line-height: 1;
+      text-align: center;
+    }
+    .lang-switch button.active {
+      background: #2a7ae2;
+      border-color: #2a7ae2;
+      color: #fff;
+    }
+    .screenshots {
+      display: flex;
+      gap: .6rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      padding-bottom: .5rem;
+    }
+    .screenshots img {
+      width: 150px;
+      flex-shrink: 0;
+      border: 1px solid #8884;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
-  <h1>passCat - ぱすキャット</h1>
+  <div class="lang-switch">
+    <button id="btn-ja" type="button" onclick="setLang('ja')">日本語</button>
+    <button id="btn-en" type="button" onclick="setLang('en')">English</button>
+  </div>
 
-  <p>passCat は、パスワードを<strong>端末の中に暗号化して保存</strong>し、
+  <div id="lang-ja">
+
+  <h1>PassCat - ぱすねこ</h1>
+
+  <div class="screenshots">
+    <img src="images/title.png" alt="タイトル画面" loading="lazy">
+    <img src="images/list.png" alt="パスワード一覧画面" loading="lazy">
+    <img src="images/input.png" alt="パスワード入力画面" loading="lazy">
+    <img src="images/cloud-provider.png" alt="クラウド同期先の選択画面" loading="lazy">
+    <img src="images/webdav.png" alt="WebDAV 設定画面" loading="lazy">
+    <img src="images/xlsx.png" alt="XLSX インポート / エクスポート画面" loading="lazy">
+  </div>
+
+  <p>PassCat は、パスワードを<strong>端末の中に暗号化して保存</strong>し、
      必要なときにワンタップでコピーして使えるパスワード管理アプリです。<br>
      ご希望の場合のみ、<strong>ご自身のクラウド</strong>（Google Drive / Dropbox / Box / WebDAV）と
      同期して、複数の端末で同じデータを使うことができます。</p>
@@ -44,22 +91,30 @@
   <p>当方がパスワードをお預かりするサーバーはありません。
      データはあなたの端末と、あなたが選んだあなた自身のクラウドにだけ保存されます。</p>
 
-  <p><em>Windows / Android / iOS 向けに近日公開予定</em></p>
+  <p><em>Windows / Android / iOS 版公開中:</em>
+     <a href="https://apps.apple.com/jp/app/%E3%83%91%E3%82%B9%E3%81%AD%E3%81%93/id6444306392">App Store</a> ・
+     <a href="https://play.google.com/store/apps/details?id=com.cforever.mipass">Google Play</a></p>
 
-  <h2>passCat を正しく使う手順</h2>
+  <h2>PassCat を正しく使う手順</h2>
 
   <h3>1. 初期設定</h3>
   <ol class="steps">
     <li><strong>メールアドレスを登録する</strong><br>
+        <div class="screenshots">
+            <img src="images/1.png" alt="メールアドレスを登録する" loading="lazy">
+        </div>
         初回起動時にメールアドレスを入力すると、6 桁のワンタイムコードが届きます。
         60 秒以内に入力して本人確認を完了してください。</li>
     <li><strong>サインイン方式を選ぶ</strong><br>
         次のいずれかを選択できます。
         <ul>
-          <li><strong>メール認証</strong> — 起動のたびにワンタイムコードで確認します。最も確実ですがひと手間かかります。</li>
+          <li><strong>メール認証</strong> — 起動のたびにワンタイムコードで確認します。確実ですがひと手間かかります。</li>
           <li><strong>オフラインパスワード</strong> — アプリ専用のマスターパスワードを設定します。ネット接続なしでサインインできます。</li>
           <li><strong>生体認証</strong>（Android / iOS）— 指紋・顔認証でサインインできます。</li>
-        </ul></li>
+        </ul>
+        <div class="screenshots">
+          <img src="images/1-2.png" alt="サインイン方式" loading="lazy">
+        </div></li>
     <li><strong>自動サインアウト時間を設定する</strong><br>
         設定画面で 5 分〜12 時間の範囲で選べます。席を離れることが多い環境では短めをおすすめします。</li>
   </ol>
@@ -95,7 +150,10 @@
 
   <h3>4. クラウド同期を設定する（任意）</h3>
   <ol class="steps">
-    <li>設定画面から同期先を選びます: <strong>Google Drive / Dropbox / Box / WebDAV</strong></li>
+    <li>設定画面から同期先を選びます: <strong>Google Drive / Dropbox / Box / WebDAV</strong>
+        <div class="screenshots">
+          <img src="images/4.png" alt="クラウド同期先の選択画面" loading="lazy">
+        </div></li>
     <li>選んだサービスのサインイン画面が開くので、ご自身のアカウントで認証してください。</li>
     <li>以後、変更は自動的にクラウドへ保存されます。別の端末で同じメールアドレス・同じクラウドを設定すると、
         データが自動でマージされ、どの端末でも同じ内容になります。</li>
@@ -112,19 +170,19 @@
   <p>同期はすべて「あなた自身のクラウドアカウント」に対して行われます。
      複数の端末で編集した場合は、エントリごとに更新日時の新しい方が採用される形で自動的にマージされます。
      また、家族などで同じクラウドアカウントを共有している場合でも、
-     保存ファイル名は passCat の登録メールアドレスごとに分かれるため、互いのデータが混ざることはありません。</p>
+     保存ファイル名は PassCat の登録メールアドレスごとに分かれるため、互いのデータが混ざることはありません。</p>
 
   <table>
     <tr><th>同期先</th><th>アプリがアクセスできる範囲</th></tr>
-    <tr><td>Google Drive</td><td>passCat が作成したファイルのみ（drive.file スコープ）</td></tr>
-    <tr><td>Dropbox</td><td>専用のアプリフォルダ（アプリ/passCat）のみ</td></tr>
-    <tr><td>Box</td><td>アカウント内のファイル全般（Box にはアプリ専用領域の仕組みがないため）</td></tr>
+    <tr><td>Google Drive</td><td>PassCat が作成したファイルのみ（drive.file スコープ）</td></tr>
+    <tr><td>Dropbox</td><td>専用のアプリフォルダ（アプリ/PassCat/mipass）のみ</td></tr>
+    <tr><td>Box</td><td>ルート/mipass</td></tr>
     <tr><td>WebDAV</td><td>指定したサーバー URL 直下の mipass フォルダ</td></tr>
   </table>
 
   <div class="note">
     <strong>Box をお使いの方へ:</strong> Box のみ、サービスの仕様上アプリに与えられる権限が
-    「アカウント全体のファイルの読み書き」になります。passCat が実際に操作するのは自分の保存ファイルだけですが、
+    「アカウント全体のファイルの読み書き」になります。PassCat が実際に操作するのは自分の保存ファイルだけですが、
     より狭い権限で使いたい場合は Google Drive または Dropbox をおすすめします。
   </div>
 
@@ -152,7 +210,7 @@
   </div>
 
   <h3>登録件数</h3>
-  <p>無料版では 50 件まで登録できます。有料版では 10,000 件まで拡張されます。</p>
+  <p>50 件まで登録できます。</p>
 
   <h2>安全にお使いいただくために</h2>
   <ul>
@@ -163,15 +221,26 @@
   </ul>
 
   <p>
-    <a href="privacy.html">プライバシーポリシー / Privacy Policy</a><br>
-    <a href="../">BirdRune トップへ / Back to BirdRune</a>
+    <a href="privacy.html">プライバシーポリシー</a><br>
+    <a href="../">BirdRune トップへ</a>
   </p>
 
-  <hr class="lang">
+  </div>
 
-  <h1>passCat</h1>
+  <div id="lang-en">
 
-  <p>passCat is a password manager that stores your passwords
+  <h1>PassCat</h1>
+
+  <div class="screenshots">
+    <img src="images/title.png" alt="Title screen" loading="lazy">
+    <img src="images/list.png" alt="Password list screen" loading="lazy">
+    <img src="images/input.png" alt="Entry editor screen" loading="lazy">
+    <img src="images/cloud-provider.png" alt="Cloud sync provider selection screen" loading="lazy">
+    <img src="images/webdav.png" alt="WebDAV settings screen" loading="lazy">
+    <img src="images/xlsx.png" alt="XLSX import / export screen" loading="lazy">
+  </div>
+
+  <p>PassCat is a password manager that stores your passwords
      <strong>encrypted on your own device</strong>, ready to copy with a single tap.
      Optionally, it can sync with <strong>your own cloud storage</strong>
      (Google Drive / Dropbox / Box / WebDAV) so you can use the same data on multiple devices.</p>
@@ -179,21 +248,29 @@
   <p>We do not operate any server that stores your passwords.
      Your data lives only on your device and, if you choose, in your own cloud account.</p>
 
-  <p><em>Coming soon for Windows, Android and iOS</em></p>
+  <p><em>Now available for Windows, Android and iOS:</em>
+     <a href="https://apps.apple.com/us/app/passcat/id6444306392">App Store</a> /
+     <a href="https://play.google.com/store/apps/details?id=com.cforever.mipass&amp;hl=en">Google Play</a></p>
 
   <h2>Getting Started</h2>
 
   <h3>1. Initial setup</h3>
   <ol class="steps">
     <li><strong>Register your email address.</strong>
+        <div class="screenshots">
+            <img src="images/1.png" alt="Registering your email address" loading="lazy">
+        </div>
         On first launch, enter your email address; a 6-digit one-time code will be sent to you.
         Enter it within 60 seconds to verify.</li>
     <li><strong>Choose a sign-in method:</strong>
         <ul>
-          <li><strong>Email verification</strong> — a one-time code on every launch. Most reliable, slightly more effort.</li>
+          <li><strong>Email verification</strong> — a one-time code on every launch. Reliable, slightly more effort.</li>
           <li><strong>Offline password</strong> — a master password for this app. Works without a network connection.</li>
           <li><strong>Biometric</strong> (Android / iOS) — sign in with fingerprint or face recognition.</li>
-        </ul></li>
+        </ul>
+        <div class="screenshots">
+          <img src="images/1-2.png" alt="Sign-in methods" loading="lazy">
+        </div></li>
     <li><strong>Set the auto sign-out timer</strong> (5 minutes to 12 hours) in Settings.
         A shorter time is recommended if you often leave your device unattended.</li>
   </ol>
@@ -228,7 +305,10 @@
 
   <h3>4. Cloud sync (optional)</h3>
   <ol class="steps">
-    <li>In Settings, choose a sync provider: <strong>Google Drive / Dropbox / Box / WebDAV</strong>.</li>
+    <li>In Settings, choose a sync provider: <strong>Google Drive / Dropbox / Box / WebDAV</strong>.
+        <div class="screenshots">
+          <img src="images/4.png" alt="Choosing a sync provider" loading="lazy">
+        </div></li>
     <li>Sign in with your own account when the provider's sign-in screen appears.</li>
     <li>Changes are saved to your cloud automatically. Set up the same email address and the same
         cloud on another device, and your data merges automatically across devices.</li>
@@ -244,20 +324,20 @@
   <h3>Cloud sync and multi-device use</h3>
   <p>Sync always targets your own cloud account. When you edit on multiple devices,
      entries are merged automatically, keeping the most recently updated version of each entry.
-     Even if you share one cloud account with family members, each passCat user's file is
+     Even if you share one cloud account with family members, each PassCat user's file is
      kept separate per registered email address, so data never gets mixed up.</p>
 
   <table>
     <tr><th>Provider</th><th>What the app can access</th></tr>
-    <tr><td>Google Drive</td><td>Only files created by passCat (drive.file scope)</td></tr>
-    <tr><td>Dropbox</td><td>Only a dedicated app folder (Apps/passCat)</td></tr>
-    <tr><td>Box</td><td>Files across your account (Box offers no app-only scope)</td></tr>
+    <tr><td>Google Drive</td><td>Only files created by PassCat (drive.file scope)</td></tr>
+    <tr><td>Dropbox</td><td>Only a dedicated app folder (Apps/PassCat/mipass)</td></tr>
+    <tr><td>Box</td><td>The mipass folder at the root of your account</td></tr>
     <tr><td>WebDAV</td><td>The mipass folder under the server URL you specify</td></tr>
   </table>
 
   <div class="note">
     <strong>Note for Box users:</strong> Due to how Box works, the app is granted read/write
-    access to files across your account. passCat only ever touches its own save file, but if you
+    access to files across your account. PassCat only ever touches its own save file, but if you
     prefer a narrower permission, we recommend Google Drive or Dropbox.
   </div>
 
@@ -284,7 +364,7 @@
   </div>
 
   <h3>Entry limit</h3>
-  <p>The free version stores up to 50 entries; the paid version extends this to 10,000.</p>
+  <p>You can store up to 50 entries.</p>
 
   <h2>Staying Safe</h2>
   <ul>
@@ -299,9 +379,28 @@
     <a href="../">Back to BirdRune</a>
   </p>
 
+  </div>
+
   <footer>
     お問い合わせ / Contact: <a href="mailto:birdrune00@gmail.com">birdrune00@gmail.com</a><br>
     © BirdRune
   </footer>
+
+  <script>
+    function setLang(lang) {
+      document.getElementById('lang-ja').hidden = (lang !== 'ja');
+      document.getElementById('lang-en').hidden = (lang !== 'en');
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('birdrune-lang', lang); } catch (e) { /* プライベートモード等では保存しない */ }
+    }
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('birdrune-lang'); } catch (e) {}
+      var lang = saved || ((navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en');
+      setLang(lang);
+    })();
+  </script>
 </body>
 </html>
